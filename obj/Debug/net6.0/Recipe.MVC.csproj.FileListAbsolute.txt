@@ -359,3 +359,5 @@ E:\Visual studio\RecipeBook\Recipe.MVC\bin\Debug\net6.0\tr\Microsoft.CodeAnalysi
 E:\Visual studio\RecipeBook\Recipe.MVC\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Visual studio\RecipeBook\Recipe.MVC\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 E:\Visual studio\RecipeBook\Recipe.MVC\obj\Debug\net6.0\Recipe.MVC.MvcApplicationPartsAssemblyInfo.cs
+E:\Visual studio\RecipeBook\Recipe.MVC\bin\Debug\net6.0\IdentityModel.dll
+E:\Visual studio\RecipeBook\Recipe.MVC\bin\Debug\net6.0\IdentityModel.AspNetCore.dll

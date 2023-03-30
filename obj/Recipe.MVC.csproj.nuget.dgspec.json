@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj": {}
+    "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj": {}
   },
   "projects": {
-    "e:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj": {
+    "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj",
+        "projectUniqueName": "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj",
         "projectName": "Recipe.MVC",
-        "projectPath": "e:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj",
+        "projectPath": "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj",
         "packagesPath": "C:\\Users\\nyaro\\.nuget\\packages\\",
-        "outputPath": "e:\\Visual studio\\RecipeBook\\Recipe.MVC\\obj\\",
+        "outputPath": "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nyaro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "IdentityModel.AspNetCore": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
               "version": "[6.0.15, )"

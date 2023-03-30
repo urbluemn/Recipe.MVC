@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "eOHBJBYySB0rUrlDMIdoq+XntadLeGz6zWv54M45q6+AZh+qif/2MTo0vCe24gWVzvglRQWweWY7O7vat9NKKg==",
+  "dgSpecHash": "2u4volUNNTMBs9fZP14rftkur6kViSizVNrt35v7BDp4TZNCDZlWj4Kl1qYoIkPnPr+iGhkcREOiYxk5BbfWDw==",
   "success": true,
-  "projectFilePath": "e:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj",
+  "projectFilePath": "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\Recipe.MVC.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\nyaro\\.nuget\\packages\\identitymodel\\6.0.0\\identitymodel.6.0.0.nupkg.sha512",
+    "C:\\Users\\nyaro\\.nuget\\packages\\identitymodel.aspnetcore\\4.3.0\\identitymodel.aspnetcore.4.3.0.nupkg.sha512",
     "C:\\Users\\nyaro\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\6.0.15\\microsoft.aspnetcore.authentication.openidconnect.6.0.15.nupkg.sha512",
     "C:\\Users\\nyaro\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.15\\microsoft.aspnetcore.mvc.razor.extensions.6.0.15.nupkg.sha512",
     "C:\\Users\\nyaro\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\6.0.15\\microsoft.aspnetcore.mvc.razor.runtimecompilation.6.0.15.nupkg.sha512",

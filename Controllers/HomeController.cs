@@ -39,16 +39,25 @@ public class HomeController : Controller
         var parameters = new AuthenticationProperties{
             RedirectUri = "/Home/Index"
         };
-        return SignIn(User, parameters);
+        return Challenge(parameters, OpenIdConnectDefaults.AuthenticationScheme);
     }
+
+    // [Authorize]
+    // public IActionResult Login()
+    // {
+    //     var parameters = new AuthenticationProperties{
+    //         RedirectUri = "/Home/Index"
+    //     };
+    //     return SignIn(User, parameters);
+    // }
 
     [Authorize]
     public IActionResult Logout()
     {
-        // var parameters = new AuthenticationProperties{
-        //     RedirectUri = "/Home/Index"
-        // };
-        return SignOut(
+        var parameters = new AuthenticationProperties{
+            RedirectUri = "/Home/Index"
+        };
+        return SignOut(parameters,
         CookieAuthenticationDefaults.AuthenticationScheme,
         OpenIdConnectDefaults.AuthenticationScheme);
     }

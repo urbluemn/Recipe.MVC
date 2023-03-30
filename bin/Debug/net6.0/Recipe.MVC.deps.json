@@ -34,6 +34,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Recipe.MVC/1.0.0": {
         "dependencies": {
+          "IdentityModel.AspNetCore": "4.3.0",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "6.0.15",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "6.0.15",
           "Microsoft.AspNetCore.Antiforgery": "6.0.0.0",
@@ -330,6 +331,32 @@
         },
         "compile": {
           "Recipe.MVC.dll": {}
+        }
+      },
+      "IdentityModel/6.0.0": {
+        "runtime": {
+          "lib/net6.0/IdentityModel.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/net6.0/IdentityModel.dll": {}
+        }
+      },
+      "IdentityModel.AspNetCore/4.3.0": {
+        "dependencies": {
+          "IdentityModel": "6.0.0",
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": "6.0.15"
+        },
+        "runtime": {
+          "lib/net6.0/IdentityModel.AspNetCore.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.3.0.0"
+          }
+        },
+        "compile": {
+          "lib/net6.0/IdentityModel.AspNetCore.dll": {}
         }
       },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect/6.0.15": {
@@ -2386,6 +2413,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "IdentityModel/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eVHCR7a6m/dm5RFcBzE3qs/Jg5j9R5Rjpu8aTOv9e4AFvaQtBXb5ah7kmwU+YwA0ufRwz4wf1hnIvsD2hSnI4g==",
+      "path": "identitymodel/6.0.0",
+      "hashPath": "identitymodel.6.0.0.nupkg.sha512"
+    },
+    "IdentityModel.AspNetCore/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WWb9QJXoDM9Z3ThDYtyyNfhUFvBj+YMcF9rl5CA23aDwN/VqNCUo1eHirjh/YYEhBoMiB5USmeWbimfbxrBKUQ==",
+      "path": "identitymodel.aspnetcore/4.3.0",
+      "hashPath": "identitymodel.aspnetcore.4.3.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/6.0.15": {
       "type": "package",

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 
@@ -11,18 +12,35 @@ builder.Services.AddAuthentication(options =>
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
     })
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.Cookie.Name = "client_mvc_cookie";
+        options.Events.OnSigningOut = async e =>
+            await e.HttpContext.RevokeUserRefreshTokenAsync();
+    })
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
         options.Authority = "https://localhost:10001";
 
         options.ClientId = "client_mvc";
         options.ClientSecret = "client_secret_mvc";
+
         options.ResponseType = "code";
+
         options.Scope.Add("profile");
+        options.Scope.Add("email");
+        options.Scope.Add("offline_access");
+        options.Scope.Add("RecipeWebAPI");
+
         options.GetClaimsFromUserInfoEndpoint = true;
         options.SaveTokens = true;
     });
+
+builder.Services.AddAccessTokenManagement(options =>
+    options.Client.DefaultClient.Scope = "RecipeWebApi");
+
+builder.Services.AddClientAccessTokenHttpClient("RecipeWebApi", configureClient: client =>
+    client.BaseAddress = new Uri("https://localhost:3001/recipe"));
 
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();
