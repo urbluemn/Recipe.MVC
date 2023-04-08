@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Recipe.MVC.Models;
 
 namespace Recipe.MVC.Controllers;
 
-[Route("[controller]/[action]")]
+[Route("[controller]")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -19,7 +20,6 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    [Route("")]
     [Route("~/")]
     [Route("~/Home")]
     public IActionResult Index()
@@ -28,46 +28,42 @@ public class HomeController : Controller
     }
 
     [Authorize]
+    [Route("[action]")]
     public IActionResult LoginInfo()
+    { 
+        return View();
+    }
+
+    [Route("[action]")]
+    public IActionResult Privacy()
     {
         return View();
     }
 
     [Authorize]
+    [Route("[action]")]
     public IActionResult Login()
     {
         var parameters = new AuthenticationProperties{
-            RedirectUri = "/Home/Index"
+            RedirectUri = "/Home"
         };
         return Challenge(parameters, OpenIdConnectDefaults.AuthenticationScheme);
     }
 
-    // [Authorize]
-    // public IActionResult Login()
-    // {
-    //     var parameters = new AuthenticationProperties{
-    //         RedirectUri = "/Home/Index"
-    //     };
-    //     return SignIn(User, parameters);
-    // }
-
     [Authorize]
+    [Route("[action]")]
     public IActionResult Logout()
     {
         var parameters = new AuthenticationProperties{
-            RedirectUri = "/Home/Index"
+            RedirectUri = "/Home"
         };
         return SignOut(parameters,
         CookieAuthenticationDefaults.AuthenticationScheme,
         OpenIdConnectDefaults.AuthenticationScheme);
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    [Route("[action]")]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

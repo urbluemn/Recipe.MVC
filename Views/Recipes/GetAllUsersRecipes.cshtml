@@ -1,0 +1,39 @@
+﻿@model RecipeListVm
+
+@{
+    ViewData["Title"] = ViewBag.Username;
+}
+
+<h1>@(ViewBag.Username)'s recipes</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Recipes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
+                    @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,79 @@
+﻿@model RecipeDetailsVm
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2" hidden>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10" hidden>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        @if(Model.EditDate != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EditDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EditDate)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            Created by:
+        </dt>
+        <dd class="col-sm-10">
+            <a asp-controller="Recipes" asp-action="GetAllUsersRecipes" asp-route-username="@Model.Username">
+                <span class="icon"><ion-icon name="person-circle-outline">
+                    </ion-icon></span>
+                        @Model.Username</a>
+        </dd>
+    </dl>
+</div>
+<div>
+    @if(Model.Username == User.FindFirst("name")!.Value)
+    {
+        @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }, new {@class="action-link"})
+        @*<a class="action-link" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>*@
+
+        @Html.ActionLink("Delete", "Delete", new {  id = Model.Id  })
+    }
+</div>
+<button class="btn btn-success">
+    <a style="text-decoration:none; color:white;" asp-action="Index">Back to List</a>
+</button>

@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+
+
+<ul class="navbar-nav">
+@if (User.Identity.IsAuthenticated)
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" title="Manage"><span class="icon"><ion-icon style="margin-right:3px" name="person-outline"></ion-icon></span>Hello, @(User.FindFirst("name").Value ?? User.FindFirst("email").Value)!</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Recipes" asp-action="GetAllUsersRecipes" asp-route-username="@User?.FindFirst("name").Value">
+            <span class="icon"><ion-icon name="bookmark-outline">
+                </ion-icon></span>
+                    My recipes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">Logout</a>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-controller="Home" asp-action="Login">Login</a>
+    </li>
+}
+</ul>

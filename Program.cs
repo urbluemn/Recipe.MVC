@@ -1,6 +1,8 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,7 @@ builder.Services.AddAuthentication(options =>
 
         options.ResponseType = "code";
 
+        options.Scope.Add("openid");
         options.Scope.Add("profile");
         options.Scope.Add("email");
         options.Scope.Add("offline_access");
@@ -34,13 +37,18 @@ builder.Services.AddAuthentication(options =>
 
         options.GetClaimsFromUserInfoEndpoint = true;
         options.SaveTokens = true;
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            NameClaimType = ClaimsIdentity.DefaultNameClaimType,
+            RoleClaimType = ClaimsIdentity.DefaultRoleClaimType
+        };
     });
 
-builder.Services.AddAccessTokenManagement(options =>
-    options.Client.DefaultClient.Scope = "RecipeWebApi");
+builder.Services.AddAccessTokenManagement();
 
-builder.Services.AddClientAccessTokenHttpClient("RecipeWebApi", configureClient: client =>
-    client.BaseAddress = new Uri("https://localhost:3001/recipe"));
+builder.Services.AddUserAccessTokenHttpClient("RecipeWebApi", configureClient: client =>
+    client.BaseAddress = new Uri(builder.Configuration["UserHttpClientUriV1"]));
 
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();

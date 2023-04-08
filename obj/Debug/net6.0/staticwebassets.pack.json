@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\wwwroot\\js\\alertTimeout.js",
+      "PackagePath": "staticwebassets\\js\\alertTimeout.js"
+    },
+    {
       "Id": "E:\\Visual studio\\RecipeBook\\Recipe.MVC\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

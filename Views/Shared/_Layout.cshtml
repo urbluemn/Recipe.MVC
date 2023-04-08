@@ -28,25 +28,37 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Recipes" asp-action="Index">Recipe Book</a>
+                        </li>
                     </ul>
-                    <ul class="navbar-nav">
-                        @if(!User.Identity.IsAuthenticated){
-                            <li class="nav-item">
-                                <a class="nav-link text-dark login-btn" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-                            </li>
-                        }
-                        else{
-                            <li class="nav-item">
-                                <a class="nav-link text-dark login-btn" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                    </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @{
+                var successMessage = TempData["successMessage"]?.ToString();
+                var errorMessage = TempData["errorMessage"]?.ToString();
+            }
+            @if(!string.IsNullOrWhiteSpace(successMessage))
+            {
+                <div class="alert alert-success w-50">
+                    <b>Success: </b>@successMessage
+                    <button type="button" class="btn-close float-end"
+                        data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(errorMessage))
+            {
+                <div class="alert alert-danger w-50">
+                    <b>Error: </b>@errorMessage
+                    <button class="btn-close float-end"
+                        data-bs-dismiss="alert"></button>
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
@@ -56,6 +68,9 @@
             &copy; 2023 - Recipe.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    <script src="~/js/alerttimeout.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

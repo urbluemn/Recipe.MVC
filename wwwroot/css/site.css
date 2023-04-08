@@ -16,3 +16,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.icon {
+    position: relative;
+    top: .15rem;
+    --ionicon-stroke-width: 48px;
+}
+
+ion-icon {
+    margin-right: 2px;
+}
+
+.action-link {
+    margin-right: 4px;
+}
