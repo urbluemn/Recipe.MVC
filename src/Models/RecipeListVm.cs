@@ -1,0 +1,10 @@
+﻿namespace Recipe.MVC.src.Models
+{
+    /// <summary>
+    /// Recipe List viewmodel
+    /// </summary>
+    public class RecipeListVm
+    {
+        public IList<RecipeLookupDto> Recipes { get; set; }
+    }
+}
