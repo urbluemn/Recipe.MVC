@@ -15,8 +15,7 @@ namespace Recipe.MVC.src.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        [Route("/Recipes")]
-        [HttpGet]
+        [HttpGet("/Recipes")]
         public async Task<ActionResult<RecipeListVm>> Index()
         {
             try
@@ -32,12 +31,34 @@ namespace Recipe.MVC.src.Controllers
             }
             catch (Exception ex)
             {
-                TempData["errorMessage"] = ex.Message;
+                TempData["errorMessage"] = $"Something went wrong, {ex.Message}";
                 return View();
             }
-            TempData["errorMessage"] = "Something went wrong.";
+            TempData["errorMessage"] = "Something went wrong, please try again later.";
             return View();
         }
+
+        // public async Task<ActionResult> LoadMore([FromQuery]int pageNumber =1)
+        // {
+            // try
+            // {
+        //         var client = _httpClientFactory.CreateClient("RecipeWebApi");
+        //         var response = await client.GetAsync(client.BaseAddress + $"?pageNumber={pageNumber}");
+                // if (response.IsSuccessStatusCode)
+                // {
+        //             var data = await response.Content.ReadAsStringAsync();
+        //             var modelList = JsonConvert.DeserializeObject<RecipeLookupDto>(data);
+        //             return PartialView("_LoadMore", data);
+                //}
+            // }
+            // catch (Exception ex)
+            // {
+            //     TempData["errorMessage"] = $"Something went wrong, {ex.Message}";
+            //     return View();
+            // }
+            // TempData["errorMessage"] = "Something went wrong, please try again later.";
+            // return View();
+        // }
 
         [HttpGet]
         [Route("{username}")]
@@ -104,7 +125,7 @@ namespace Recipe.MVC.src.Controllers
             {
                 var client = _httpClientFactory.CreateClient("RecipeWebApi");
                 string data = JsonConvert.SerializeObject(model);
-                StringContent content = new StringContent(data, Encoding.UTF8,
+                var content = new StringContent(data, Encoding.UTF8,
                     "application/json");
                 var response = await client.PostAsync(client.BaseAddress, content);
 
@@ -214,10 +235,12 @@ namespace Recipe.MVC.src.Controllers
             catch (Exception ex)
             {
                 TempData["errorMessage"] = ex.Message;
-                return View();
+                return RedirectToAction("GetAllUsersRecipes",
+                    new { username = User.FindFirst("name")!.Value });
             }
             TempData["errorMessage"] = "Something went wrong.";
-            return View();
+            return RedirectToAction("GetAllUsersRecipes",
+                new { username = User.FindFirst("name")!.Value });
         }
     }
 }

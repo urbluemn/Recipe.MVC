@@ -47,7 +47,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAccessTokenManagement();
 
 builder.Services.AddUserAccessTokenHttpClient("RecipeWebApi", configureClient: client =>
-    client.BaseAddress = new Uri(builder.Configuration["UserHttpClientUriV1"]));
+    client.BaseAddress = new Uri("https://localhost:3001/api/v1/recipes"));
 
 builder.Services.AddControllersWithViews()
     .AddRazorRuntimeCompilation();

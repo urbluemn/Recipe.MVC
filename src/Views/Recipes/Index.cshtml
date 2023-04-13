@@ -9,38 +9,36 @@
 <p>
     <a asp-controller="Recipes" asp-action="Create">Create your recipe here</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            @*<th>
-            Id
-            </th>*@
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Recipes)
-        {
-            <tr>
-                @*<td>
-            @Html.DisplayFor(modelItem => item.Id)
-            </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div id="recipes-container">
+    @foreach (var item in Model.Recipes)
+    {
+        <div class="recipe-item">
+            @Html.DisplayFor(modelItem => item.Name)
+
+            @Html.DisplayFor(modelItem => item.Description)
+
+            @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  })
+        </div>
+    }
+</div>
+
+@* <button id="showMore">Show more...</button> *@
+
+@* @section Scripts {
+    <script>
+        var pageNumber = 1;
+        
+        $("#showMore").click(function () {
+            $.ajax({
+                url: "/Recipes/LoadMore?pageNumber=" + pageNumber,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $("#recipes-container").append(data);
+                    pageNumber++;
+                }
+            });
+        });
+    </script>
+} *@

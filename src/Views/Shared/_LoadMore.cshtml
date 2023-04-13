@@ -1,0 +1,11 @@
+@model RecipeListVm
+
+@foreach (var item in Model.Recipes) {
+    <div>
+        @Html.DisplayFor(modelItem => item.Name)
+
+        @Html.DisplayFor(modelItem => item.Description)
+
+        @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  })
+    </div>
+}
