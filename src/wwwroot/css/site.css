@@ -1,5 +1,9 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -29,4 +33,20 @@ ion-icon {
 
 .action-link {
     margin-right: 4px;
+}
+.card-title {
+    color: black;
+    font-size: larger;
+}
+
+.card-subtitle {
+    color: grey;
+}
+
+.recipe-item {
+    transition: box-shadow .3s;
+}
+
+.recipe-item:hover {
+    box-shadow: 0 0 20px rgba(33,33,33,.5);
 }

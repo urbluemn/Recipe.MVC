@@ -9,10 +9,12 @@ namespace Recipe.MVC.src.Controllers
     public class RecipesController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IWebHostEnvironment _environment;
 
-        public RecipesController(IHttpClientFactory httpClientFactory)
+        public RecipesController(IHttpClientFactory httpClientFactory, IWebHostEnvironment environment)
         {
             _httpClientFactory = httpClientFactory;
+            _environment = environment;
         }
 
         [HttpGet("/Recipes")]
@@ -37,28 +39,6 @@ namespace Recipe.MVC.src.Controllers
             TempData["errorMessage"] = "Something went wrong, please try again later.";
             return View();
         }
-
-        // public async Task<ActionResult> LoadMore([FromQuery]int pageNumber =1)
-        // {
-            // try
-            // {
-        //         var client = _httpClientFactory.CreateClient("RecipeWebApi");
-        //         var response = await client.GetAsync(client.BaseAddress + $"?pageNumber={pageNumber}");
-                // if (response.IsSuccessStatusCode)
-                // {
-        //             var data = await response.Content.ReadAsStringAsync();
-        //             var modelList = JsonConvert.DeserializeObject<RecipeLookupDto>(data);
-        //             return PartialView("_LoadMore", data);
-                //}
-            // }
-            // catch (Exception ex)
-            // {
-            //     TempData["errorMessage"] = $"Something went wrong, {ex.Message}";
-            //     return View();
-            // }
-            // TempData["errorMessage"] = "Something went wrong, please try again later.";
-            // return View();
-        // }
 
         [HttpGet]
         [Route("{username}")]
@@ -119,10 +99,25 @@ namespace Recipe.MVC.src.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<ActionResult<CreateRecipeDto>> Create(CreateRecipeDto model)
+        public async Task<ActionResult<CreateRecipeDto>> Create(CreateRecipeDto model/*, IFormFile image*/)
         {
             try
             {
+                // if(image.Length > 0)
+                // {
+                //     var path = Path.Combine(_environment.WebRootPath, "Images/", image.FileName);
+                //     using (var stream = new FileStream(path, FileMode.Create))
+                //     {
+                //         await image.CopyToAsync(stream);
+                //     }
+
+                //     var recipe = new CreateRecipeDto{
+                //         Name = model.Name,
+                //         Details = model.Details,
+                //         Description = model.Description
+                //     };
+                // }
+
                 var client = _httpClientFactory.CreateClient("RecipeWebApi");
                 string data = JsonConvert.SerializeObject(model);
                 var content = new StringContent(data, Encoding.UTF8,

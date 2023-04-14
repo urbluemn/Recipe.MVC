@@ -4,41 +4,33 @@
     ViewData["Title"] = "Recipe Book";
 }
 
+@section Scripts {
+    <script src="~/lib/masonry/masonry.pkgd.min.js"></script>
+}
+
 <h1>Recipe Book</h1>
 
 <p>
     <a asp-controller="Recipes" asp-action="Create">Create your recipe here</a>
 </p>
-<div id="recipes-container">
-    @foreach (var item in Model.Recipes)
-    {
-        <div class="recipe-item">
-            @Html.DisplayFor(modelItem => item.Name)
+@if(Model == null){
+    <h3>Not Found.</h3>
+}else{
+    <div id="recipes-container" class="container p-0">
+        <div class="row" data-masonry='{"percentPosition": true }'>
+            @foreach (var item in Model.Recipes)
+            {
+                <a class="recipe-item p-0 m-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 text-decoration-none" asp-action="GetDetails" asp-route-id="@item.Id">
+                    <div class="card">
+                        <img alt="thumbnail" height="200" class="card-img-top" src="https://picsum.photos/300/400?cache=@DateTime.Now.Ticks">
+                            <div class="card-body text-center">
+                                <b><p class="card-title">@Html.DisplayFor(modelItem => item.Name)</p></b>
 
-            @Html.DisplayFor(modelItem => item.Description)
-
-            @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  })
+                                <p class="card-subtitle">@Html.DisplayFor(modelItem => item.Description)</p>
+                            </div>
+                    </div> 
+                </a>
+            }
         </div>
-    }
-</div>
-
-@* <button id="showMore">Show more...</button> *@
-
-@* @section Scripts {
-    <script>
-        var pageNumber = 1;
-        
-        $("#showMore").click(function () {
-            $.ajax({
-                url: "/Recipes/LoadMore?pageNumber=" + pageNumber,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    $("#recipes-container").append(data);
-                    pageNumber++;
-                }
-            });
-        });
-    </script>
-} *@
+    </div>
+}

@@ -10,6 +10,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string Details { get; set; }
+        public List<IFormFile> RecipeImages { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime? EditDate { get; set; }
     }

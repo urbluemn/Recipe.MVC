@@ -1,11 +1,33 @@
 @model RecipeListVm
 
-@foreach (var item in Model.Recipes) {
-    <div>
-        @Html.DisplayFor(modelItem => item.Name)
+@{
+    var number = Model.pageNumber;
+    var end = Model.pageSize + 19;
+}
 
-        @Html.DisplayFor(modelItem => item.Description)
+@for(var i = Model.pageSize; i <= end; i++)
+{
+    <div
+        class="card mb-4 ms-1" aria-hidden="true"
+        @if (i == end)
+        {
+                // conditional attributes   
+            <text>
+                hx-get="@Url.Action("LoadMore", new {pageNumber = number, pageSize = end})"
+                hx-trigger="revealed"
+                hx-swap="afterend"
+            </text>
 
-        @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  })
+        }>
+        @foreach (var item in Model.Recipes)
+        {
+                <div>
+                    @Html.DisplayFor(modelItem => item.Name)
+
+                    @Html.DisplayFor(modelItem => item.Description)
+
+                    @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  })
+                </div>
+        }
     </div>
 }
