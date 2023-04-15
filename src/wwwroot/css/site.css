@@ -47,6 +47,86 @@ ion-icon {
     transition: box-shadow .3s;
 }
 
-.recipe-item:hover {
-    box-shadow: 0 0 20px rgba(33,33,33,.5);
+    .recipe-item:hover {
+        box-shadow: 0 0 20px rgba(33,33,33,.5);
+    }
+
+.add-new-recipe {
+    z-index: 1;
+    position: fixed;
+    bottom: 6rem;
+    right: 4rem;
+    background-color: white;
+    border-radius: 100%;
+    transition: transform .3s;
+    /*transition: box-shadow .3s;*/
+    box-shadow: 0 0 25px rgba(170,203,115, 1);
+    white-space: nowrap;
 }
+
+    .add-new-recipe:hover {
+        background-color: #AACB73;
+        transform: scale(1.2);
+    }
+
+.tooltiptext {
+    font-size: 0.8rem;
+    visibility: hidden;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0px 3px;
+    position: absolute;
+    z-index: 1;
+    right: 110%;
+    bottom: 15%;
+    background-color: #AACB73;
+    opacity: 0;
+    transition-delay: 2s;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+}
+
+    .add-new-recipe:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.nav-link {
+    /*border: 2px solid black;*/
+    border-radius: 20px;
+    color: black!important;
+    font-weight: 700;
+    margin: 3px;
+    white-space: nowrap;
+    background-color: white;
+    transition: .3s;
+}
+
+    .nav-link:hover {
+        background-color: #AACB73;
+        color: white!important;
+    }
+
+.user-link {
+    border: 2px solid #AACB73;
+}
+
+    .user-link:hover {
+        border-color: white;
+    }
+
+.navbar-brand {
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 100%;
+    background-color: white;
+    transition: .3s;
+}
+
+    .navbar-brand:hover {
+        background-color: #AACB73;
+    }
