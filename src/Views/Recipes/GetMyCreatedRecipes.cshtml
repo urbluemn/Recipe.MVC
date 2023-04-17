@@ -4,36 +4,45 @@
     ViewData["Title"] = $"My Recipes";
 }
 
+@section Scripts {
+    <script src="~/lib/masonry/masonry.pkgd.min.js"></script>
+    @*<script>
+        $('#del-btn').on('click', function (e) {
+            e.stopPropagation();
+        $('#edit-btn').on('click', function (e) {
+            e.stopPropagation();
+    </script>*@
+}
+
 <h1>My created recipes</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Recipes)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id=item.Id  }) |
-                    @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@if (Model == null)
+{
+    <h3>There is nothing here yet.</h3>
+}
+else
+{
+    <div id="my-recipes-container" class="container p-0">
+        <div class="row" data-masonry='{"percentPosition": true }'>
+            @foreach (var item in Model.Recipes)
+            {
+                <div class="recipe-item p-0 m-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 text-decoration-none" ">
+                    <div class="card">
+                        <img alt="thumbnail" height="200" class="card-img-top" src="https://picsum.photos/300/400?cache=@DateTime.Now.Ticks">
+                        <div class="card-body text-center">
+                            <b><p class="card-title">@Html.DisplayFor(modelItem => item.Name)</p></b>
+
+                            <p class="card-subtitle">@Html.DisplayFor(modelItem => item.Description)</p>
+
+                            <div class="card-links m-0 p-0">
+                                <button type="button" asp-controller="Recipes" asp-action="Edit" id="edit-btn" class="card-link">Edit</button>
+                                <button type="button" asp-controller="Recipes" asp-action="Delete" id="del-btn" class="card-link">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+            

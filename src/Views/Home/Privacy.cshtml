@@ -1,6 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@section Scripts{
+    <script>
+        document.getElementById('circle-data').style.visibility="hidden";
+    </script>
+}
+
+<h1>Ask our questions here.</h1>
+
+<h2>If you have any questions, feel free to contact me.</h2>
+
+<form action="mailto:nyaroshko1404@gmail.com" method="get" enctype="text/plain">
+    <label for="input-name" class="form-label">Your name:</label>
+    <input id="input-name" type="text" class="form-control" required/>
+
+    <label for="input-email" class="form-label">Your Email:</label>
+    <input type="email" class="form-control" required/>
+
+    <label for="input-message" class="form-label">Your message:</label>
+    <textarea rows="5" cols="30" class="form-control"></textarea><br />
+    <input type="submit" value="Send" class="btn-outline-success"/>
+</form>

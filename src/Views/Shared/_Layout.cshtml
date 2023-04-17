@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Recipe Book</title>
+    <title>@ViewData["Title"] - Salad</title>
     <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -24,14 +24,13 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LoginInfo">Login Info</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="Index">Recipe Book</a>
                         </li>
+                        <environment names="Development">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LoginInfo">Login Info</a>
+                            </li>
+                        </environment>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -60,9 +59,9 @@
                         data-bs-dismiss="alert"></button>
                 </div>
             }
-            @if(ViewData["Title"] != "Recipe Book")
+            @if(ViewData["Title"] as string != "Recipe Book")
             {
-                <div class="add-new-recipe">
+                <div id="circle-data" class="add-new-recipe">
                     <a asp-controller="Home" asp-action="Privacy"><img alt="privacy" src="~/images/icons8-question.png" width="50" /></a>
                     <span class="tooltiptext">Any questions?</span>
                 </div>
