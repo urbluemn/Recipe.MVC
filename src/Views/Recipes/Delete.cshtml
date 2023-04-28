@@ -69,11 +69,13 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete" asp-route-id="@Model.Id">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        @* <a asp-action="Index">Back to List</a> *@
-    </form>
-    <form>
-        <input class="btn-outline-dark" type="button" value="Go back!" onclick="history.back()">
-    </form>
+    <div class="delete-links">
+        <form asp-action="Delete" asp-route-id="@Model.Id">
+            <input type="submit" value="Delete" class="card-link del-btn" />
+            @* <a asp-action="Index">Back to List</a> *@
+        </form>
+        <form>
+            <input class="card-link edit-btn" type="button" value="Go back!" onclick="history.back()">
+        </form>
+    </div>
 </div>

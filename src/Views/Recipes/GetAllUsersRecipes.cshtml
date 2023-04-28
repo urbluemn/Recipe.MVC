@@ -4,34 +4,36 @@
     ViewData["Title"] = $"User: {ViewBag.Username}";
 }
 
+@section Scripts {
+    <script src="~/lib/masonry/masonry.pkgd.min.js"></script>
+}
+
 <h1>@(ViewBag.Username)'s recipes</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Recipes)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "GetDetails", new {  id=item.Id  })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+@if(Model == null)
+{
+    <h4>Error loading, try again later.</h4>
+}
+else if(Model.Recipes.Count == 0)
+{
+    <h4>User have not created anything yet.</h4>
+}
+else{
+    <div id="recipes-container" class="container p-0">
+        <div class="row" data-masonry='{"percentPosition": true }'>
+            @foreach (var item in Model.Recipes)
+            {
+                <a class="recipe-item p-0 m-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 text-decoration-none" asp-action="GetDetails" asp-route-id="@item.Id">
+                    <div class="card">
+                        <img alt="thumbnail" height="200" class="card-img-top" src="https://picsum.photos/300/400?cache=@DateTime.Now.Ticks">
+                            <div class="card-body text-center">
+                                <b><p class="card-title">@Html.DisplayFor(modelItem => item.Name)</p></b>
+
+                                <p class="card-subtitle">@Html.DisplayFor(modelItem => item.Description)</p>
+                            </div>
+                    </div> 
+                </a>
+            }
+        </div>
+    </div>
+}

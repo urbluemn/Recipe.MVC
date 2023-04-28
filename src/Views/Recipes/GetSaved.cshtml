@@ -1,43 +1,45 @@
 ﻿@model RecipeListVm
 
 @{
-    ViewData["Title"] = $"My Recipes";
+    ViewData["Title"] = "Saved";
 }
 
 @section Scripts {
     <script src="~/lib/masonry/masonry.pkgd.min.js"></script>
 }
 <div class="active-inactive">
-    <input type="button" value="Saved" onclick="location.href='@Url.Action("GetSaved", "Recipes")'" class="inactive-btn card-link edit-btn">
-    <input type="button" value="Created" onclick="location.href='@Url.Action("GetAllUsersRecipes", "Recipes", new {username = User?.FindFirst("name").Value})'" class="active-btn card-link edit-btn">
+    <input type="button" value="Saved" onclick="location.href='@Url.Action("GetSaved", "Recipes")'" class="active-btn card-link edit-btn">
+    <input type="button" value="Created" onclick="location.href='@Url.Action("GetAllUsersRecipes", "Recipes", new {username = User?.FindFirst("name").Value})'" class="inactive-btn card-link edit-btn">
 </div>
 
-<h1>My created recipes</h1>
+<h1>Saved</h1>
 
 @if (Model == null)
 {
-    <h4>Error loading, try again later.</h4>
+    <h3>Error loading, try again later.</h3>
 }
 else if (Model.Recipes.Count == 0)
 {
-    <h4>There is nothing here yet.</h4>
-    <div>
-        <a asp-controller="Recipes" asp-action="Create">Start creating right now!</a>
-        <span class="tooltiptext">Create new Recipe</span>
-    </div>
+    <h3>There is nothing here yet.</h3>
 }
 else
 {
-    <div id="my-recipes-container" class="container p-0">
+    <div class="container p-0">
         <div class="row" data-masonry='{"percentPosition": true }'>
             @foreach (var item in Model.Recipes)
             {
                 <a class="recipe-item p-0 m-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 text-decoration-none" asp-action="GetDetails" asp-route-id="@item.Id">
                     <div class="card">
                         <img alt="thumbnail" height="250" class="card-img-top" src="https://picsum.photos/600/600?cache=@DateTime.Now.Ticks">
+
                         <div class="card-links">
-                            <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Recipes", new { id = item.Id} )', event.preventDefault()" class="card-link edit-btn">
-                            <input type="button" value="Delete" onclick="location.href='@Url.Action("Delete", "Recipes", new { id = item.Id} )', event.preventDefault()" class="card-link del-btn">
+                            @*<form onclick="event.preventDefault()" method="post" action="@Url.Action("DeleteSaved", "Recipes", new { id = item.Id} )">
+                                <input type="submit" value="Delete" class="card-link del-btn">
+                            </form>*@
+                            @using (Html.BeginForm("DeleteSaved", "Recipes", new { id = item.Id }, FormMethod.Post))
+                            {
+                                <input type="submit" value="Delete" class="card-link del-btn">
+                            }
                         </div>
 
                         <div class="card-body text-center">

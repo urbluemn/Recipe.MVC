@@ -34,6 +34,26 @@ ion-icon {
 .action-link {
     margin-right: 4px;
 }
+
+/*Card*/
+.card {
+    border-radius: 25px;
+    min-height: 300px;
+    background-position: center;
+    background-size: contain;
+}
+
+.card-img-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.card-body {
+    width: 100%;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
 .card-title {
     color: black;
     font-size: larger;
@@ -43,19 +63,62 @@ ion-icon {
     color: grey;
 }
 
+.card-links {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    top: 210px;
+    visibility: hidden;
+    background: transparent;
+}
+
+    .card-links:hover {
+        visibility: visible;
+    }
+
+.card-link {
+    z-index: 5;
+    color: white;
+    font-weight: 600;
+    background-color: #AACB73;
+    border: 2px solid #AACB73;
+    border-radius: 20px;
+    /*padding-left: 8px;*/
+    /*padding-right: 8px;*/
+    width: 80px;
+    height: 34px;
+}
+
+    .card-link:hover {
+        color: black;
+        background-color: white;
+    }
+
+.del-btn {
+    background-color: #d36c59!important;
+    border: 2px solid #d36c59!important;
+}
+
+    .del-btn:hover {
+        color: black!important;
+        background-color: white!important;
+    }
+
 .recipe-item {
     transition: box-shadow .3s;
-    border-radius: 50%;
+    border-radius: 25px;
 }
 
     .recipe-item:hover {
-        box-shadow: 0 0 20px rgba(33,33,33,.5);
+        box-shadow: 0 0 20px rgba(170,203,115, 1);
     }
 
     .recipe-item:hover .card-link{
         visibility: visible;
     }
 
+/*Circle with tooltip*/
 .add-new-recipe {
     z-index: 1;
     position: fixed;
@@ -68,6 +131,14 @@ ion-icon {
     box-shadow: 0 0 25px rgba(170,203,115, 1);
     white-space: nowrap;
 }
+
+    .add-new-recipe a {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        width: 50px;
+        height: 50px;
+    }
 
     .add-new-recipe:hover {
         background-color: #AACB73;
@@ -97,6 +168,7 @@ ion-icon {
         opacity: 1;
     }
 
+/*Navbar*/
 .nav-link {
     /*border: 2px solid black;*/
     border-radius: 20px;
@@ -136,26 +208,81 @@ ion-icon {
         background-color: #AACB73;
     }
 
-.card-links {
-    margin-top: 20px;
-    z-index: 2;
-}
-
-.card-link {
-    
-    color: white;
-    font-weight: 600;
-    background-color: #AACB73;
-    border: 2px solid #AACB73;
-    border-radius: 20px;
-    /*padding-left: 8px;*/
-    /*padding-right: 8px;*/
-    width: 80px;
-    height: 34px;
-    visibility: hidden;
-}
-
-    .card-link:hover {
-        color: black;
-        background-color: white;
+@media(min-width: 400px) {
+    .nav-link {
+        margin-left: 0!important;
+        padding-left: 10px!important;
     }
+
+    .user-link {
+        padding-left: 8px!important;
+    }
+}
+
+/*Edit*/
+.edit-container {
+    display: block;
+}
+
+.edit-img {
+    width: 350px;
+    height: 450px;
+    border-radius: 25px;
+}
+
+.edit-img-container {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.edit-input-container {
+    padding-top: 10px;
+}
+
+.form-control {
+    max-width: 50%;
+}
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(170,203,115, .5);
+        border-color: #AACB73;
+    }
+
+.control-label {
+    font-weight: 600;
+}
+
+/*Saved/Created*/
+.active-btn {
+    color: white !important;
+    background-color: #AACB73 !important;
+    border: 2px solid #AACB73 !important;
+}
+
+    .active-btn:hover {
+        color: black !important;
+        background-color: white !important;
+    }
+
+.inactive-btn {
+    color: black !important;
+    background-color: white !important;
+    border: 2px solid #AACB73 !important;
+}
+
+    .inactive-btn:hover {
+        color: white !important;
+        background-color: #AACB73 !important;
+    }
+
+.active-inactive {
+    width: fit-content;
+    border-radius: 20px;
+    border: 2px solid grey;
+    background-color: lightgrey;
+}
+
+.delete-links {
+    display: flex;
+    gap: 10px;
+}

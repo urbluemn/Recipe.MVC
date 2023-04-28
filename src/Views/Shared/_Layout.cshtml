@@ -26,7 +26,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Recipes" asp-action="Index">Recipe Book</a>
                         </li>
-                        <environment names="Development">
+                        <environment names="Debug">
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="LoginInfo">Login Info</a>
                             </li>
@@ -62,7 +62,7 @@
             @if(ViewData["Title"] as string != "Recipe Book")
             {
                 <div id="circle-data" class="add-new-recipe">
-                    <a asp-controller="Home" asp-action="Privacy"><img alt="privacy" src="~/images/icons8-question.png" width="50" /></a>
+                    <a asp-controller="Home" asp-action="Privacy"><img alt="privacy" src="~/images/question.svg" width="35" /></a>
                     <span class="tooltiptext">Any questions?</span>
                 </div>
             }

@@ -19,7 +19,13 @@
             {
                 <a class="recipe-item p-0 m-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 text-decoration-none" asp-action="GetDetails" asp-route-id="@item.Id">
                     <div class="card">
-                        <img alt="thumbnail" height="200" class="card-img-top" src="https://picsum.photos/300/400?cache=@DateTime.Now.Ticks">
+                        <img alt="thumbnail" height="250" class="card-img-top" src="https://picsum.photos/600/600?cache=@DateTime.Now.Ticks">
+                        <div class="card-links">
+                            @using (Html.BeginForm("Save", "Recipes", new { recipeId = item.Id }, FormMethod.Post))
+                            {
+                                <input type="submit" value="Save" class="card-link edit-btn">
+                            }
+                        </div>
                             <div class="card-body text-center">
                                 <b><p class="card-title">@Html.DisplayFor(modelItem => item.Name)</p></b>
 
@@ -33,6 +39,6 @@
 }
 
 <div class="add-new-recipe">
-    <a asp-controller="Recipes" asp-action="Create"><img alt="createNewRecipe" src="~/images/icons8-plus.png" width="50" /></a>
+    <a asp-controller="Recipes" asp-action="Create"><img alt="createNewRecipe" src="~/images/plus.svg" width="35" /></a>
     <span class="tooltiptext">Create new Recipe</span>
 </div>

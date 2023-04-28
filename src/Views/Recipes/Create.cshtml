@@ -7,8 +7,11 @@
 <h1>Create your recipe</h1>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="edit-container">
+    <div class="edit-img-container">
+        <img alt="thumbnail" class="edit-img" src="https://picsum.photos/800/800?cache=@DateTime.Now.Ticks">
+    </div>
+    <div class="edit-input-container">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -18,25 +21,63 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <textarea asp-for="Description" id="createDescription" cols="30" rows="4" maxlength="250" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
+                <span id="create-desc-count" style="font-weight:600;font-size:12px;"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Details" class="control-label"></label>
-                <input asp-for="Details" class="form-control" />
+                <textarea asp-for="Details" id="createDetails" cols="30" rows="10" maxlength="1000" class="form-control"></textarea>
                 <span asp-validation-for="Details" class="text-danger"></span>
+                <span id="create-det-count" style="font-weight:600;font-size:12px;"></span>
             </div>
             <div class="form-group mt-2">
-                <input type="submit" value="Create" class="btn btn-success" />
+                <input type="submit" value="Create" class="card-link edit-btn w-50" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-controller="Recipes" asp-action="Index">Return to recipe book</a>
-</div>
+<form>
+    <input class="card-link del-btn mt-2" type="button" value="Go back!" onclick="history.back()">
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        let textArea = document.getElementById("createDescription");
+        let characterCounter = document.getElementById("create-desc-count");
+        const maxNumOfChars = 250;
+
+        textArea.addEventListener("input", () =>{
+            let numOfEnteredChars = textArea.value.length;
+            let counter = maxNumOfChars - numOfEnteredChars;
+            characterCounter.textContent = counter + "/250";
+                if (counter <= 0) {
+                    characterCounter.style.color = "red";
+                } else if (counter < 30) {
+                    characterCounter.style.color = "orange";
+                } else {
+                    characterCounter.style.color = "black";
+                }
+        });
+    </script>
+    <script>
+        let textArea2 = document.getElementById("createDetails");
+        let characterCounter2 = document.getElementById("create-det-count");
+        const maxNumOfChars2 = 1000;
+
+        textArea2.addEventListener("input", () => {
+            let numOfEnteredChars2 = textArea2.value.length;
+            let counter2 = maxNumOfChars2 - numOfEnteredChars2;
+            characterCounter2.textContent = counter2 + "/1000";
+            if (counter2 <= 0) {
+                characterCounter2.style.color = "red";
+            } else if (counter2 < 30) {
+                characterCounter2.style.color = "orange";
+            } else {
+                characterCounter2.style.color = "black";
+            }
+        });
+    </script>
 }
